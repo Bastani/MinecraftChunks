@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfinhpu12cosx"]
+[gd_scene load_steps=3 format=3 uid="uid://bfinhpu12cosx"]
 
 [ext_resource type="Script" uid="uid://cdue73wy5sul6" path="res://Chunk.cs" id="1_lexys"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lexys"]
+
 [node name="Chunk" type="StaticBody3D"]
 script = ExtResource("1_lexys")
+Noise = SubResource("FastNoiseLite_lexys")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

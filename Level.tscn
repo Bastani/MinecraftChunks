@@ -1,7 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://baw7sofs2315w"]
+[gd_scene load_steps=12 format=3 uid="uid://baw7sofs2315w"]
 
 [ext_resource type="PackedScene" uid="uid://bfinhpu12cosx" path="res://Chunk.tscn" id="1_bexhn"]
+[ext_resource type="Script" uid="uid://dxg3dckfnuemi" path="res://BlockManager.cs" id="2_t7iv1"]
+[ext_resource type="Script" uid="uid://cja2q76lolte" path="res://Block.cs" id="3_m3clv"]
+[ext_resource type="Texture2D" uid="uid://cs27d7yjmkcdo" path="res://BlockTextures/stone.png" id="3_q4iis"]
+[ext_resource type="Texture2D" uid="uid://cx2cbkrnbqgdg" path="res://BlockTextures/dirt.png" id="4_m3clv"]
+[ext_resource type="Texture2D" uid="uid://c003gkcyw7kij" path="res://BlockTextures/grass_side.png" id="5_4eo0i"]
+[ext_resource type="Texture2D" uid="uid://nbfiitd7u1xd" path="res://BlockTextures/grass.png" id="5_mxnmf"]
+
+[sub_resource type="Resource" id="Resource_mxnmf"]
+script = ExtResource("3_m3clv")
+metadata/_custom_type_script = "uid://cja2q76lolte"
+
+[sub_resource type="Resource" id="Resource_4eo0i"]
+script = ExtResource("3_m3clv")
+Texture = ExtResource("3_q4iis")
+metadata/_custom_type_script = "uid://cja2q76lolte"
+
+[sub_resource type="Resource" id="Resource_86ljf"]
+script = ExtResource("3_m3clv")
+Texture = ExtResource("4_m3clv")
+metadata/_custom_type_script = "uid://cja2q76lolte"
+
+[sub_resource type="Resource" id="Resource_3ywx5"]
+script = ExtResource("3_m3clv")
+Texture = ExtResource("5_4eo0i")
+TopTexture = ExtResource("5_mxnmf")
+BottomTexture = ExtResource("4_m3clv")
+metadata/_custom_type_script = "uid://cja2q76lolte"
 
 [node name="Level" type="Node3D"]
 
+[node name="BlockManager" type="Node" parent="."]
+script = ExtResource("2_t7iv1")
+Air = SubResource("Resource_mxnmf")
+Stone = SubResource("Resource_4eo0i")
+Dirt = SubResource("Resource_86ljf")
+Grass = SubResource("Resource_3ywx5")
+
 [node name="Chunk" parent="." instance=ExtResource("1_bexhn")]
+
+[node name="Chunk2" parent="." instance=ExtResource("1_bexhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="Chunk3" parent="." instance=ExtResource("1_bexhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
+
+[node name="Chunk4" parent="." instance=ExtResource("1_bexhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
