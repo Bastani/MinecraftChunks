@@ -171,4 +171,10 @@ public partial class Chunk : StaticBody3D
 
 		return _blocks[blockPosition.X, blockPosition.Y, blockPosition.Z] == BlockManager.Instance.Air;
 	}
+
+	public void SetBlock(Vector3I blockPosition, Block block)
+	{
+		_blocks[blockPosition.X, blockPosition.Y, blockPosition.Z] = block;
+		Update();
+	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://baw7sofs2315w"]
+[gd_scene load_steps=16 format=3 uid="uid://baw7sofs2315w"]
 
 [ext_resource type="PackedScene" uid="uid://bfinhpu12cosx" path="res://Chunk.tscn" id="1_bexhn"]
 [ext_resource type="Script" uid="uid://dxg3dckfnuemi" path="res://BlockManager.cs" id="2_t7iv1"]
@@ -7,6 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://cx2cbkrnbqgdg" path="res://BlockTextures/dirt.png" id="4_m3clv"]
 [ext_resource type="Texture2D" uid="uid://c003gkcyw7kij" path="res://BlockTextures/grass_side.png" id="5_4eo0i"]
 [ext_resource type="Texture2D" uid="uid://nbfiitd7u1xd" path="res://BlockTextures/grass.png" id="5_mxnmf"]
+[ext_resource type="PackedScene" uid="uid://ch6rf7yhkgn8p" path="res://Player.tscn" id="8_4eo0i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4eo0i"]
+
+[sub_resource type="Sky" id="Sky_86ljf"]
+sky_material = SubResource("ProceduralSkyMaterial_4eo0i")
+
+[sub_resource type="Environment" id="Environment_3ywx5"]
+background_mode = 2
+sky = SubResource("Sky_86ljf")
 
 [sub_resource type="Resource" id="Resource_mxnmf"]
 script = ExtResource("3_m3clv")
@@ -31,6 +41,9 @@ metadata/_custom_type_script = "uid://cja2q76lolte"
 
 [node name="Level" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3ywx5")
+
 [node name="BlockManager" type="Node" parent="."]
 script = ExtResource("2_t7iv1")
 Air = SubResource("Resource_mxnmf")
@@ -48,3 +61,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
 
 [node name="Chunk4" parent="." instance=ExtResource("1_bexhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="Player" parent="." instance=ExtResource("8_4eo0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.1588, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.56050897, 0.82814837, 0, -0.82814837, 0.56050897, 0, 41.100937, 0)
+shadow_enabled = true
