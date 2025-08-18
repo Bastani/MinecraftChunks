@@ -43,6 +43,7 @@ public partial class Chunk : StaticBody3D
 
 	public void Generate()
 	{
+		//Get all blocks for this chunk
 		for (var x = 0; x < Dimensions.X; x++)
 		{
 			for (var y = 0; y < Dimensions.Y; y++)
@@ -81,6 +82,7 @@ public partial class Chunk : StaticBody3D
 	{
 		_surfaceTool.Begin(Mesh.PrimitiveType.Triangles);
 
+		//Create mesh for chunk
 		for (var x = 0; x < Dimensions.X; x++)
 		{
 			for (var y = 0; y < Dimensions.Y; y++)
@@ -105,6 +107,7 @@ public partial class Chunk : StaticBody3D
 
 		if(block == BlockManager.Instance.Air) return;
 
+		//Check neighbors to determine wether to show that face
 		if (CheckTransparent(blockPosition + Vector3I.Up))
 		{
 			CreateFaceMesh(_top, blockPosition, block.TopTexture ?? block.Texture );
