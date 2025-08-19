@@ -37,15 +37,10 @@ public partial class Chunk : StaticBody3D
 	{
 		ChunkManager.Instance.UpdateChunkPosition(this, position, ChunkPosition);;
 		ChunkPosition = position;
-		GlobalPosition = new Vector3(position.X * Dimensions.X, 0, position.Y * Dimensions.Z);
+		CallDeferred(Node3D.MethodName.SetGlobalPosition, new Vector3(position.X * Dimensions.X, 0, position.Y * Dimensions.Z));
 
 		Generate();
 		Update();
-	}
-
-	public override void _Ready()
-	{
-		SetChunkPosition(new Vector2I(Mathf.FloorToInt(GlobalPosition.X / Dimensions.X), Mathf.FloorToInt(GlobalPosition.Z / Dimensions.Z)));
 	}
 
 	public void Generate()

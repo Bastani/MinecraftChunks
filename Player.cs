@@ -11,7 +11,7 @@ public partial class Player : CharacterBody3D
 
 	private float _cameraXRotation;
 
-	public Player Instance { get; set; }
+	public static Player Instance { get; set; }
 
 	public override void _Ready()
 	{

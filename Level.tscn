@@ -54,6 +54,7 @@ Grass = SubResource("Resource_3ywx5")
 
 [node name="ChunkManager" type="Node" parent="."]
 script = ExtResource("7_86ljf")
+ChunkScene = ExtResource("1_bexhn")
 
 [node name="Chunk" parent="." instance=ExtResource("1_bexhn")]
 
