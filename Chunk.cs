@@ -33,12 +33,19 @@ public partial class Chunk : StaticBody3D
 	[Export]
 	public FastNoiseLite Noise { get; set; }
 
-	public override void _Ready()
+	public void SetChunkPosition(Vector2I position)
 	{
-		ChunkPosition = new Vector2I(Mathf.FloorToInt(GlobalPosition.X / Dimensions.X), Mathf.FloorToInt(GlobalPosition.Z / Dimensions.Z));
+		ChunkManager.Instance.UpdateChunkPosition(this, position, ChunkPosition);;
+		ChunkPosition = position;
+		GlobalPosition = new Vector3(position.X * Dimensions.X, 0, position.Y * Dimensions.Z);
 
 		Generate();
 		Update();
+	}
+
+	public override void _Ready()
+	{
+		SetChunkPosition(new Vector2I(Mathf.FloorToInt(GlobalPosition.X / Dimensions.X), Mathf.FloorToInt(GlobalPosition.Z / Dimensions.Z)));
 	}
 
 	public void Generate()
@@ -159,8 +166,11 @@ public partial class Chunk : StaticBody3D
 		var triangle1 = new Vector3[] { a, b, c };
 		var triangle2 = new Vector3[] { a, c, d };
 
-		_surfaceTool.AddTriangleFan(triangle1, uvTriangle1);
-		_surfaceTool.AddTriangleFan(triangle2, uvTriangle2);
+		var normal = ((Vector3)(c - a)).Cross(b - a).Normalized();
+		var normals = new[] { normal, normal, normal };
+
+		_surfaceTool.AddTriangleFan(triangle1, uvTriangle1, normals: normals);
+		_surfaceTool.AddTriangleFan(triangle2, uvTriangle2, normals: normals);
 	}
 
 	private bool CheckTransparent(Vector3I blockPosition)

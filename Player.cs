@@ -72,7 +72,7 @@ public partial class Player : CharacterBody3D
 
 			if (Input.IsActionJustPressed(GameInputs.PlaceBlock))
 			{
-				chunk.SetBlock((Vector3I)(intBlockPosition - chunk.GlobalPosition + RayCast.GetCollisionNormal()), BlockManager.Instance.Stone);
+				ChunkManager.Instance.SetBlock((Vector3I)(intBlockPosition + RayCast.GetCollisionNormal()), BlockManager.Instance.Stone);
 			}
 		}
 		else
